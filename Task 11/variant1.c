@@ -3,7 +3,7 @@
 
 double calc_sum1(int k, int n, double ak, double bk, double fact) {
     if (k > n) {
-        return 0.0; // Базовий випадок
+        return 0.0; 
     }
     
     double current_term = (ak * bk) / fact;
