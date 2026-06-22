@@ -231,6 +231,7 @@ int main() {
 
         if (choice == 0) {
             printf("Exiting.\n");
+
             break;
         } else if (choice == 1) {
             task1();
@@ -238,7 +239,7 @@ int main() {
             task2();
         } else if (choice == 3) {
             task3();
-        } else {
+        } else { 
             printf("Invalid input.\n");
         }
     }
