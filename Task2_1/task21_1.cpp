@@ -1,28 +1,38 @@
 #include <iostream>
 #include <fstream>
-#include <string>
 #include <iterator>
+#include <string>
 
-int main() 
-{
+void process_files(const std::string& name1, const std::string& name2) {
+    std::ifstream file_in(name1);
+    if (!file_in.is_open()) {
+        std::cerr << "Помилка відкриття файлу: " << name1 << std::endl;
+        return;
+    }
 
-    std::string name1;
-    std::string name2;
+    std::ofstream file_out(name2);
+    if (!file_out.is_open()) {
+        std::cerr << "Помилка відкриття файлу: " << name2 << std::endl;
+        return;
+    }
 
-    std::cin >> name1 >> name2;
+    std::ostream_iterator<int> out(file_out, "\n");
 
-    std::ifstream inFile(name1);
-    std::ofstream outFile(name2);
+    std::istream_iterator<int> end_in;
 
-    std::ostream_iterator<int> out(outFile, "\n");
-
-    for (std::istream_iterator<int> in(inFile); in != std::istream_iterator<int>(); in++) 
-    {
-        if (*in != 0) 
-        {
-            out = *in; 
+    for (std::istream_iterator<int> in(file_in); in != end_in; in++) {
+        if (*in != 0) {
+            *out = *in; 
         }
     }
+
+    std::cout << "Обробка завершена успішно!" << std::endl;
+}
+
+int main() {
+    std::string name1 = "input.txt";  
+    std::string name2 = "output.txt"; 
+    process_files(name1, name2);
 
     return 0;
 }
