@@ -1,12 +1,14 @@
 #include <iostream>
-#include <algorithm> // Для алгоритму count
-#include "pt4.h"     // Бібліотека задачника з ptin_iterator
+#include <algorithm> 
+#include <iterator> 
 
 int main() 
 {
+    std::cout << "Enter an array of integers (press Ctrl+Z on Windows or Ctrl+D on Linux to finish input):\n";
 
-    int zeroCount = std::count(ptin_iterator<int>(), ptin_iterator<int>(), 0);
-    std::cout << zeroCount << "\n";
+    int zeroCount = std::count(std::istream_iterator<int>(std::cin), std::istream_iterator<int>(), 0);
+
+    std::cout << "Number of zeros: " << zeroCount << "\n";
 
     return 0;
 }
